@@ -1,0 +1,1 @@
+["^ ","~$UdpPacket",["^ ","~:row",19,"~:col",1,"~:name","^0","~:ns","~$aleph.udp","~:top-ns","^5"],"~$socket",["^ ","^1",25,"^2",1,"~:fixed-arities",["~#set",[1]],"^3","^7","^4","^5","^6","^5","~:type","~:fn"],"~:filename","/Users/barana/.m2/repository/aleph/aleph/0.7.0-alpha2/aleph-0.7.0-alpha2.jar:aleph/udp.clj"]
