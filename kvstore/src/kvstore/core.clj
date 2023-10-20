@@ -1,13 +1,15 @@
 (ns kvstore.core
   (:gen-class)
-  (:require [aleph.http :as http]
-            [aleph.tcp :as tcp])
+  (:require [aleph.http :as http])
   (:import [java.util.concurrent ConcurrentHashMap]))
 
 (defonce kv-store (atom (ConcurrentHashMap.)))
 
 (defn put-key-value [key value]
-  (swap! kv-store assoc key value)
+  (let [m @kv-store]
+    (doto m
+      (.put key value))
+    (reset! kv-store m))
   "OK")
 
 (defn get-value [key]
@@ -27,7 +29,7 @@
                                    "/remove" (remove-key (:query-params req))
                                    :else "Invalid Request")]
                     {:status 200 :headers {"Content-Type" "text/plain"} :body response}))]
-    (tcp/start-server handler {:port port})))
+    (http/start-server handler {:port port})))
 
 (defn -main
   [& args]
